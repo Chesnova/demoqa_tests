@@ -41,29 +41,3 @@ def test_student_registration_form(open_browser):
         'Address Figueres, Catalonia, Spain',
         'State and City Haryana Karnal'
     ))
-
-
-def test_web_tables_(open_browser):
-    # 1) add a new fourth line
-    browser.open('/webtables')
-    browser.element('#addNewRecordButton').click()
-    browser.element('#firstName').type('Salvador')
-    browser.element('#lastName').type('Dali')
-    browser.element('#userEmail').set_value('test@test.test')
-    browser.element('#age').type('31')
-    browser.element('#salary').type('5000')
-    browser.element('#department').type('Insurance')
-    browser.element('#submit').submit()
-
-    # 2) edit all fields in the second line
-    browser.element('#edit-record-2').click()
-    browser.element('#firstName').type('Salvadorito')
-    browser.element('#lastName').type('Dalila')
-    browser.element('#userEmail').set_value('test3@test.test')
-    browser.element('#age').type('31')
-    browser.element('#salary').type('5000')
-    browser.element('#department').type('Insurance')
-    browser.element('#submit').submit()
-
-    # 3) remove the third line
-    browser.element('#delete-record-3').click()
