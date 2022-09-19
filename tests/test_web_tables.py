@@ -24,6 +24,7 @@ def test_add_fourth_line(open_browser):
     ))
 
 def test_edit_all_fields_second_line(open_browser):
+    browser.open('/webtables')
     browser.element('#edit-record-2').click()
     browser.element('#firstName').clear().type('Salvadorito')
     browser.element('#lastName').clear().type('Dalila')
@@ -40,6 +41,7 @@ def test_edit_all_fields_second_line(open_browser):
 
 
 def test_remove_third_line(open_browser):
+    browser.open('/webtables')
     browser.element('#delete-record-3').click()
 
     # assert table
