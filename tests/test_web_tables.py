@@ -2,13 +2,11 @@ import pytest
 from selene.support.shared import browser
 from selene import have
 
-@pytest.fixture
-def open_browser():
-    browser.config.timeout = 3
-    browser.config.base_url = ('https://demoqa.com')
+def given_open_browser():
+    browser.open('/webtables')
 
 def test_add_fourth_line(open_browser):
-    browser.open('/webtables')
+    given_open_browser()
     browser.element('#addNewRecordButton').click()
     browser.element('#firstName').type('Salvador')
     browser.element('#lastName').type('Dali')
@@ -24,7 +22,7 @@ def test_add_fourth_line(open_browser):
     ))
 
 def test_edit_all_fields_second_line(open_browser):
-    browser.open('/webtables')
+    given_open_browser()
     browser.element('#edit-record-2').click()
     browser.element('#firstName').clear().type('Salvadorito')
     browser.element('#lastName').clear().type('Dalila')
@@ -41,7 +39,7 @@ def test_edit_all_fields_second_line(open_browser):
 
 
 def test_remove_third_line(open_browser):
-    browser.open('/webtables')
+    given_open_browser()
     browser.element('#delete-record-3').click()
 
     # assert table
