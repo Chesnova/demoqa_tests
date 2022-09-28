@@ -1,9 +1,7 @@
-import pytest
-import os
 from selene.support.shared import browser
-from selene import have, command, by
-from selene.support.shared.jquery_style import ss
 from tests.test_data.users import first_user
+from demo_tests.utils import path
+from selene import have, command
 
 
 def given_open_browser():
@@ -36,10 +34,11 @@ def test_student_registration_form():
         browser.all('[id^=hobbies').by(have.value(hobby.value)).first.element(
             '..'
         ).click()
-    browser.element('#uploadPicture').send_keys(os.path.abspath('../resources/fortest.png'))
-    browser.element('#currentAddress').set_value('Figueres, Catalonia, Spain')
-    browser.element('#react-select-3-input').type('Haryana').press_enter()
-    browser.element('#react-select-4-input').type('Karnal').press_enter()
+
+    browser.element('#uploadPicture').send_keys(path.to_resource(first_user.picture_file))
+    browser.element('#currentAddress').set_value(first_user.currentAddress)
+    browser.element('#react-select-3-input').type(first_user.state).press_enter()
+    browser.element('#react-select-4-input').type(first_user.city).press_enter()
     browser.element('#submit').press_enter()
 
     # THEN

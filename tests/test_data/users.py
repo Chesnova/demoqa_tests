@@ -35,6 +35,10 @@ class User:
     birth_year: str = '2000'
     subjects: Tuple[Subject] = (Subject.Computer_Science, Subject.Biology)
     hobbies: Tuple[Hobby] = (Hobby.Music,)
+    picture_file: str = 'fortest.png'
+    state: str = 'Haryana'
+    city: str = 'Karnal'
+    currentAddress: str = 'Figueres, Catalonia, Spain'
 
 
 first_user = User(name='Salvador', gender=Gender.Male)

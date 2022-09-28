@@ -5,7 +5,7 @@ from selene import have
 def given_open_browser():
     browser.open('/webtables')
 
-def test_add_fourth_line(open_browser):
+def test_add_fourth_line():
     given_open_browser()
     browser.element('#addNewRecordButton').click()
     browser.element('#firstName').type('Salvador')
@@ -21,7 +21,7 @@ def test_add_fourth_line(open_browser):
         'Salvador', 'Dali', '31', 'test@test.test', '5000', 'Insurance', ''
     ))
 
-def test_edit_all_fields_second_line(open_browser):
+def test_edit_all_fields_second_line():
     given_open_browser()
     browser.element('#edit-record-2').click()
     browser.element('#firstName').clear().type('Salvadorito')
@@ -38,7 +38,7 @@ def test_edit_all_fields_second_line(open_browser):
     ))
 
 
-def test_remove_third_line(open_browser):
+def test_remove_third_line():
     given_open_browser()
     browser.element('#delete-record-3').click()
 
