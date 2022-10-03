@@ -18,9 +18,9 @@ class Hobby(Enum):
 
 
 class Gender(Enum):
-    Male = 'Male'
-    Female = 'Female'
-    Other = 'Other'
+    Male = 1
+    Female = 2
+    Other = 3
 
 
 @dataclass
@@ -41,4 +41,4 @@ class User:
     currentAddress: str = 'Figueres, Catalonia, Spain'
 
 
-first_user = User(name='Salvador', gender=Gender.Male)
+student = User(name='Salvador', gender=Gender.Male)

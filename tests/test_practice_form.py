@@ -1,55 +1,38 @@
-from selene.support.shared import browser
-from tests.test_data.users import first_user
-from demo_tests.utils import path
-from selene import have, command
-
-
-def given_open_browser():
-    browser.open('/automation-practice-form')
-    # (
-    #     ss('[id^=google_ads][id$=container__]').with_(timeout=10)
-    #     .should(have.size_greater_than_or_equal(3))
-    #     .perform(command.js.remove)
-    # )
+from demo_tests.model.pages import registration_form as app
+from tests.test_data.users import student
 
 
 def test_student_registration_form():
-    given_open_browser()
+    # GIVEN
+    app.given_opened('/automation-practice-form')
 
     # WHEN
-    browser.element('#firstName').set_value(first_user.name)
-    browser.element('#lastName').type(first_user.last_name)
-    browser.element('#userEmail').set_value(first_user.email)
-    browser.element('#gender-radio-1').double_click()
-    browser.element('#userNumber').set_value(first_user.user_number)
-    browser.element('#dateOfBirthInput').click()
-    browser.element('.react-datepicker__month-select').send_keys(first_user.birth_month)
-    browser.element('.react-datepicker__year-select').send_keys(first_user.birth_year)
-    browser.element(f'.react-datepicker__day.react-datepicker__day--0{first_user.birth_day}').click()
-    # browser.element('#subjectsInput').type(subject.value).press_enter().type(subject.value).press_enter()
-    for subject in first_user.subjects:
-        browser.element('#subjectsInput').type(subject.value).press_enter()
-    # browser.element('[for="hobbies-checkbox-3"]').click()
-    for hobby in first_user.hobbies:
-        browser.all('[id^=hobbies').by(have.value(hobby.value)).first.element(
-            '..'
-        ).click()
-
-    browser.element('#uploadPicture').send_keys(path.to_resource(first_user.picture_file))
-    browser.element('#currentAddress').set_value(first_user.currentAddress)
-    browser.element('#react-select-3-input').type(first_user.state).press_enter()
-    browser.element('#react-select-4-input').type(first_user.city).press_enter()
-    browser.element('#submit').press_enter()
+    app.set_name(student.name)
+    app.set_last_name(student.last_name)
+    app.set_user_email(student.email)
+    app.fill_gender(student.gender.Male)
+    app.set_user_number(student.user_number)
+    app.set_birthday(student.birth_day, student.birth_month, student.birth_year)
+    app.add_user_subjects(student.subjects)
+    app.add_user_hobbies(student.hobbies)
+    app.upload_file(student.picture_file)
+    app.set_address(student.currentAddress)
+    app.fill_dropdown(3, student.state)
+    app.fill_dropdown(4, student.city)
+    app.submit_form()
 
     # THEN
-    browser.element('.table-responsive').all('tbody tr').should(have.texts(
-        'Student Name Salvador Dali',
-        'Student Email test@test.test',
-        'Gender Male', 'Mobile 9999999999',
-        'Date of Birth 11 April,2000',
-        'Subjects Computer Science, Biology',
-        'Hobbies Music',
-        'Picture fortest.png',
-        'Address Figueres, Catalonia, Spain',
-        'State and City Haryana Karnal'
-    ))
+    app.should_have_submitted(
+        [
+            ('Student Name', 'Salvador Dali'),
+            ('Student Email', 'test@test.test'),
+            ('Gender', 'Male'),
+            ('Mobile', '9999999999'),
+            ('Date of Birth', '11 April,2000'),
+            ('Subjects', 'Computer Science, Biology'),
+            ('Hobbies', 'Music'),
+            ('Picture', 'fortest.png'),
+            ('Address', 'Figueres, Catalonia, Spain'),
+            ('State and City', 'Haryana Karnal')
+        ],
+    )
