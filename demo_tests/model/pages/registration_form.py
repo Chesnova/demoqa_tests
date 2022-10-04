@@ -39,6 +39,10 @@ def set_birthday(day, month, year):
     datepicker.fill_date(day, month, year)
 
 
+def set_birthdate(day, month, year):
+    datepicker.set_date(day, month, year)
+
+
 def set_user_number(value):
     browser.element('#userNumber').type(value)
 
