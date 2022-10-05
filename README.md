@@ -1,3 +1,1 @@
-# Project - qa_guru_python_2_7
-
-Применить инструменты Модульной Парадигмы для инкапсуляции
+Project - qa_guru_python_2_9

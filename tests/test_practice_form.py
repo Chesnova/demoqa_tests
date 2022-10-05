@@ -19,7 +19,7 @@ def test_student_registration_form():
         app.set_user_email(student.email)
         app.fill_gender(student.gender.Male)
         app.set_user_number(student.user_number)
-        app.set_birthdate(student.birth_day, student.birth_month, student.birth_year)
+        app.set_birthday(student.birth_day, student.birth_month, student.birth_year)
         app.add_user_subjects(student.subjects)
         app.add_user_hobbies(student.hobbies)
         app.upload_file(student.picture_file)
