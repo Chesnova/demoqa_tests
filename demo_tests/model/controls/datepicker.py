@@ -2,7 +2,7 @@ from selene.support.shared import browser
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-driver = webdriver.Chrome(executable_path='C:/chromedriver.exe')
+# driver = webdriver.Chrome(executable_path='C:/chromedriver.exe')
 
 
 def set_date(day: str, month: str, year: str):
