@@ -1,4 +1,7 @@
+from selene.support.shared import browser
+
 from demo_tests.model.pages import registration_form as app
+from demo_tests.utils import attach
 from tests.test_data.users import student
 import allure
 from allure_commons.types import Severity
@@ -43,3 +46,7 @@ def test_student_registration_form():
                 ('State and City', 'Haryana Karnal')
             ],
         )
+
+    attach.add_html(browser)
+    attach.add_logs(browser)
+    attach.add_screenshot(browser)
